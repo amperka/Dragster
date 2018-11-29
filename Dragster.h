@@ -1,8 +1,8 @@
 
 #include <Arduino.h>
 
-#define SWAP_LEFT  0b00000001
-#define SWAP_RIGHT 0b00000010
+#define SWAP_LEFT  0b00000010
+#define SWAP_RIGHT 0b00000001
 #define SWAP_BOTH  0b00000011
 
 class Dragster {

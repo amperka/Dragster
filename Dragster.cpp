@@ -30,21 +30,21 @@ void Dragster::drive(int left, int right) {
 	  left = -left;
   }
   if (left > 0) {
-	digitalWrite(4, HIGH);
-	analogWrite(5, left);
+	digitalWrite(7, HIGH);
+	analogWrite(6, left);
   } else {
-	digitalWrite(4, LOW);
-	analogWrite(5, -left);
+	digitalWrite(7, LOW);
+	analogWrite(6, -left);
   }
   if (swappedRight) {
 	  right = -right;
   }
   if (right > 0) {
-	digitalWrite(7, HIGH);
-	analogWrite(6, right);
+	digitalWrite(4, HIGH);
+	analogWrite(5, right);
   } else {
-	digitalWrite(7, LOW);
-	analogWrite(6, -right);
+	digitalWrite(4, LOW);
+	analogWrite(5, -right);
   }
 }
 void Dragster::driveF(float left, float right) {
@@ -52,36 +52,36 @@ void Dragster::driveF(float left, float right) {
 	  left = -left;
   }
   if (left > 0) {
-	digitalWrite(4, HIGH);
+	digitalWrite(7, HIGH);
 	if (left > 1) left = 1;
-	analogWrite(5, left * 255);
+	analogWrite(6, left * 255);
   } else {
-	digitalWrite(4, LOW);
+	digitalWrite(7, LOW);
 	if (left < -1) left = -1;
-	analogWrite(5, -left * 255);
+	analogWrite(6, -left * 255);
   }
   if (swappedRight) {
 	  right = -right;
   }
   if (right > 0) {
-	digitalWrite(7, HIGH);
+	digitalWrite(4, HIGH);
 	if (right > 1) right = 1;
-	analogWrite(6, right * 255);
+	analogWrite(5, right * 255);
   } else {
-	digitalWrite(7, LOW);
+	digitalWrite(4, LOW);
 	if (right < -1) right = -1;
-	analogWrite(6, -right * 255);
+	analogWrite(5, -right * 255);
   }
 }
 void Dragster::encodersBegin(void (*left)(), void (*right)()) {
-  attachInterrupt(2, right, CHANGE);
-  attachInterrupt(3, left, CHANGE);
+  attachInterrupt(2, left, CHANGE);
+  attachInterrupt(3, right, CHANGE);
 }
 void Dragster::leftEncoder(void (*left)(), int param) {
   attachInterrupt(2, left, param);
 }
-void Dragster::rightEncoder(void (*left)(), int param) {
-  attachInterrupt(2, left, param);
+void Dragster::rightEncoder(void (*right)(), int param) {
+  attachInterrupt(3, right, param);
 }
 bool Dragster::readButton() {
   return digitalRead(10);
