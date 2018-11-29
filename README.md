@@ -1,5 +1,5 @@
-# Dragster
-============
+Dragster
+========
 
 Библиотека Arduino для [Драгстера](http://amperka.ru/product/dragster).
 
@@ -10,12 +10,10 @@
 «Добавить библиотеку…». В появившемся окне выберите скачаный архив с
 библиотекой. Установка завершена.
 
-============
-
 This Arduino library relates to [Dragster](http://amperka.com/product/dragster).
 
 Installation
-====================
+============
 
 Open Arduino IDE. Choose "Scketch" → "Iport library" → "Add library…".
 In appeared window choose downloaded zip.
