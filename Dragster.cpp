@@ -2,10 +2,10 @@
  * This file is a part of Dragster car set library.
  *
  * Realise: dragster object
- * © Amperka LLC (https://amperka.com, dev@amperka.com)
+ * Â© Amperka LLC (https://amperka.com, dev@amperka.com)
  * 
  * Author: Harry Morgan <morgan@amperka.ru>
- * Refactored by:Yury Botov (by@amperka.com)
+ * Refactored by: Yury Botov (by@amperka.com)
  * License: GPLv3, all text here must be included in any redistribution.
  */
 
