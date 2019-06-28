@@ -1,7 +1,7 @@
 /*
  * This file is a part of Dragster car set library.
  *
- * Realise: dragster object
+ *
  * © Amperka LLC (https://amperka.com, dev@amperka.com)
  * 
  * Author: Harry Morgan <morgan@amperka.ru>
