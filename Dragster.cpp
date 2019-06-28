@@ -17,13 +17,7 @@ void Dragster::begin(int direction) {
   if (direction & SWAP_RIGHT) {
 	swappedRight = 1;
   }
-  pinMode(4, OUTPUT);
-  pinMode(7, OUTPUT);
-  pinMode(5, OUTPUT);
-  pinMode(6, OUTPUT);
-
-  pinMode(10, INPUT);
-  pinMode(13, OUTPUT);
+  begin();
 }
 void Dragster::drive(int left, int right) {
   if (swappedLeft) {
