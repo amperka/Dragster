@@ -20,52 +20,11 @@ void Dragster::begin(int direction) {
   begin();
 }
 void Dragster::drive(int left, int right) {
-  if (swappedLeft) {
-	  left = -left;
-  }
-  if (left > 0) {
-	digitalWrite(7, HIGH);
-	analogWrite(6, left);
-  } else {
-	digitalWrite(7, LOW);
-	analogWrite(6, -left);
-  }
-  if (swappedRight) {
-	  right = -right;
-  }
-  if (right > 0) {
-	digitalWrite(4, HIGH);
-	analogWrite(5, right);
-  } else {
-	digitalWrite(4, LOW);
-	analogWrite(5, -right);
-  }
+	driveOne(left, swappedLeft, 7, 6);
+	driveOne(right, swappedRight, 4, 5);
 }
 void Dragster::driveF(float left, float right) {
-  if (swappedLeft) {
-	  left = -left;
-  }
-  if (left > 0) {
-	digitalWrite(7, HIGH);
-	if (left > 1) left = 1;
-	analogWrite(6, left * 255);
-  } else {
-	digitalWrite(7, LOW);
-	if (left < -1) left = -1;
-	analogWrite(6, -left * 255);
-  }
-  if (swappedRight) {
-	  right = -right;
-  }
-  if (right > 0) {
-	digitalWrite(4, HIGH);
-	if (right > 1) right = 1;
-	analogWrite(5, right * 255);
-  } else {
-	digitalWrite(4, LOW);
-	if (right < -1) right = -1;
-	analogWrite(5, -right * 255);
-  }
+	drive((int)(left * 255.0), (int)(right * 255.0));
 }
 void Dragster::encodersBegin(void (*left)(), void (*right)()) {
   attachInterrupt(2, left, CHANGE);
