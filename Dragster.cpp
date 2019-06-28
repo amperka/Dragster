@@ -83,3 +83,15 @@ bool Dragster::readButton() {
 void Dragster::led(int state) {
   digitalWrite(13, state);
 }
+void driveOne(int speed, int swapped, byte dir, byte drv) {
+	if (swapped)
+		speed = -speed;
+	if (speed > 0) {
+		digitalWrite(dir, HIGH);
+		analogWrite(drv, speed);
+	}
+	else {
+		digitalWrite(dir, LOW);
+		analogWrite(drv, -speed);
+	}
+}

@@ -19,6 +19,7 @@ class Dragster {
 	void waitButton();
     void led(int state);
   private:
+	void driveOne(int speed, int swapped, byte dir, byte drv);
     byte swappedLeft = 0;
     byte swappedRight = 0;
 };
