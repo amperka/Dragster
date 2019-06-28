@@ -1,8 +1,10 @@
 /*
  * This file is a part of Dragster car set library.
  *
- * Defines: dragster object
- * © Amperka LLC (https://amperka.com, dev@amperka.com)
+ * Declares the Dragster class used to perform basic interactions
+ * with the robot (https://amperka.ru/product/dragster)
+ *
+ * Â© Amperka LLC (https://amperka.com, dev@amperka.com)
  * 
  * Author: Harry Morgan <morgan@amperka.ru>
  * Refactored by: Yury Botov (by@amperka.com)
