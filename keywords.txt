@@ -6,7 +6,7 @@
 # Datatypes (KEYWORD1)
 #######################################
 
-Dragster	KEYWORD1
+Dragster		KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -15,9 +15,9 @@ Dragster	KEYWORD1
 begin 			KEYWORD2
 drive 			KEYWORD2
 driveF 			KEYWORD2
-encodersBegin 	KEYWORD2
-leftEncoder 	KEYWORD2
-rightEncoder 	KEYWORD2
+encodersBegin 		KEYWORD2
+leftEncoder 		KEYWORD2
+rightEncoder 		KEYWORD2
 readButton 		KEYWORD2
 waitButton 		KEYWORD2
 led 			KEYWORD2
@@ -26,6 +26,6 @@ led 			KEYWORD2
 # Constants (LITERAL1)
 #######################################
 
-SWAP_LEFT	LITERAL1
-SWAP_RIGHT	LITERAL1
-SWAP_BOTH	LITERAL1
+SWAP_LEFT		LITERAL1
+SWAP_RIGHT		LITERAL1
+SWAP_BOTH		LITERAL1
