@@ -1,14 +1,25 @@
+/*
+ * This file is a part of Dragster car set library.
+ *
+ *
+ * © Amperka LLC (https://amperka.com, dev@amperka.com)
+ * 
+ * Author: Harry Morgan <morgan@amperka.ru>
+ * Refactored by: Yury Botov (by@amperka.com)
+ * License: GPLv3, all text here must be included in any redistribution.
+ */
+
 #include "Dragster.h"
 
-Dragster::Dragster() { }
+Dragster::Dragster() {}
 void Dragster::begin() {
-  pinMode(4, OUTPUT);
-  pinMode(7, OUTPUT);
-  pinMode(5, OUTPUT);
-  pinMode(6, OUTPUT);
+    pinMode(4, OUTPUT);
+    pinMode(7, OUTPUT);
+    pinMode(5, OUTPUT);
+    pinMode(6, OUTPUT);
 
-  pinMode(10, INPUT);
-  pinMode(13, OUTPUT);
+    pinMode(10, INPUT);
+    pinMode(13, OUTPUT);
 }
 void Dragster::begin(int direction) {
   if (direction & SWAP_LEFT) {
@@ -27,17 +38,17 @@ void Dragster::driveF(float left, float right) {
 	drive((int)(left * 255.0), (int)(right * 255.0));
 }
 void Dragster::encodersBegin(void (*left)(), void (*right)()) {
-  attachInterrupt(2, left, CHANGE);
-  attachInterrupt(3, right, CHANGE);
+    attachInterrupt(2, left, CHANGE);
+    attachInterrupt(3, right, CHANGE);
 }
 void Dragster::leftEncoder(void (*left)(), int param) {
-  attachInterrupt(2, left, param);
+    attachInterrupt(2, left, param);
 }
 void Dragster::rightEncoder(void (*right)(), int param) {
-  attachInterrupt(3, right, param);
+    attachInterrupt(3, right, param);
 }
 bool Dragster::readButton() {
-  return digitalRead(10);
+    return digitalRead(10);
 }
 void Dragster::led(int state) {
   digitalWrite(13, state);
