@@ -11,6 +11,9 @@
  * License: GPLv3, all text here must be included in any redistribution.
  */
 
+#ifndef __DRAGSTER_H__
+#define __DRAGSTER_H__
+
 #include <Arduino.h>
 
 #define SWAP_LEFT 0b00000010
@@ -37,3 +40,5 @@ private:
     byte swappedLeft = 0;
     byte swappedRight = 0;
 };
+
+#endif //__DRAGSTER_H__
