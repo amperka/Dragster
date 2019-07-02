@@ -26,7 +26,7 @@ void Dragster::begin() {
 
 void Dragster::begin(int direction) {
     if (direction & SWAP_LEFT) {
-        swappedLeft = 1;
+        swappedLeft = 0;
     }
     if (direction & SWAP_RIGHT) {
         swappedRight = 1;
