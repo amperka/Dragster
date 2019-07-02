@@ -11,7 +11,6 @@
  * License: GPLv3, all text here must be included in any redistribution.
  */
 
-
 #include <Arduino.h>
 
 #define SWAP_LEFT 0b00000010
@@ -33,6 +32,8 @@ public:
     void led(int state);
 
 private:
+    void driveOne(int speed, int swapped, byte dir, byte drv);
+
     byte swappedLeft = 0;
     byte swappedRight = 0;
 };

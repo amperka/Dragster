@@ -11,7 +11,9 @@
 
 #include "Dragster.h"
 
-Dragster::Dragster() {}
+Dragster::Dragster() {
+}
+
 void Dragster::begin() {
     pinMode(4, OUTPUT);
     pinMode(7, OUTPUT);
@@ -21,6 +23,7 @@ void Dragster::begin() {
     pinMode(10, INPUT);
     pinMode(13, OUTPUT);
 }
+
 void Dragster::begin(int direction) {
     if (direction & SWAP_LEFT) {
         swappedLeft = 1;
@@ -28,79 +31,47 @@ void Dragster::begin(int direction) {
     if (direction & SWAP_RIGHT) {
         swappedRight = 1;
     }
-    pinMode(4, OUTPUT);
-    pinMode(7, OUTPUT);
-    pinMode(5, OUTPUT);
-    pinMode(6, OUTPUT);
+    begin();
+}
 
-    pinMode(10, INPUT);
-    pinMode(13, OUTPUT);
-}
 void Dragster::drive(int left, int right) {
-    if (swappedLeft) {
-        left = -left;
-    }
-    if (left > 0) {
-        digitalWrite(7, HIGH);
-        analogWrite(6, left);
-    } else {
-        digitalWrite(7, LOW);
-        analogWrite(6, -left);
-    }
-    if (swappedRight) {
-        right = -right;
-    }
-    if (right > 0) {
-        digitalWrite(4, HIGH);
-        analogWrite(5, right);
-    } else {
-        digitalWrite(4, LOW);
-        analogWrite(5, -right);
-    }
+    driveOne(left, swappedLeft, 7, 6);
+    driveOne(right, swappedRight, 4, 5);
 }
+
 void Dragster::driveF(float left, float right) {
-    if (swappedLeft) {
-        left = -left;
-    }
-    if (left > 0) {
-        digitalWrite(7, HIGH);
-        if (left > 1)
-            left = 1;
-        analogWrite(6, left * 255);
-    } else {
-        digitalWrite(7, LOW);
-        if (left < -1)
-            left = -1;
-        analogWrite(6, -left * 255);
-    }
-    if (swappedRight) {
-        right = -right;
-    }
-    if (right > 0) {
-        digitalWrite(4, HIGH);
-        if (right > 1)
-            right = 1;
-        analogWrite(5, right * 255);
-    } else {
-        digitalWrite(4, LOW);
-        if (right < -1)
-            right = -1;
-        analogWrite(5, -right * 255);
-    }
+    drive((int)(left * 255.0), (int)(right * 255.0));
 }
+
 void Dragster::encodersBegin(void (*left)(), void (*right)()) {
     attachInterrupt(2, left, CHANGE);
     attachInterrupt(3, right, CHANGE);
 }
+
 void Dragster::leftEncoder(void (*left)(), int param) {
     attachInterrupt(2, left, param);
 }
+
 void Dragster::rightEncoder(void (*right)(), int param) {
     attachInterrupt(3, right, param);
 }
+
 bool Dragster::readButton() {
     return digitalRead(10);
 }
+
 void Dragster::led(int state) {
     digitalWrite(13, state);
+}
+
+void driveOne(int speed, int swapped, byte dir, byte drv) {
+    if (swapped)
+        speed = -speed;
+    if (speed > 0) {
+        digitalWrite(dir, HIGH);
+        analogWrite(drv, speed);
+    } else {
+        digitalWrite(dir, LOW);
+        analogWrite(drv, -speed);
+    }
 }
