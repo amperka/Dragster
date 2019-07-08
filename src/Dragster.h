@@ -28,8 +28,6 @@ public:
     void drive(int left, int right);
     void driveF(float left, float right);
     void encodersBegin(void (*left)(), void (*right)());
-    void leftEncoder(void (*left)(), int param);
-    void rightEncoder(void (*left)(), int param);
     bool readButton();
     void waitButton();
     void led(int state);
