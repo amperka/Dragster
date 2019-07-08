@@ -35,7 +35,7 @@ public:
     void led(int state);
 
 private:
-    void driveOne(int speed, int swapped, byte dir, byte drv);
+    void driveMotor(int speed, int swapped, byte dir, byte drv);
 
     byte swappedLeft = 1;
     byte swappedRight = 0;
