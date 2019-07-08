@@ -48,14 +48,6 @@ void Dragster::encodersBegin(void (*left)(), void (*right)()) {
     attachInterrupt(3, right, CHANGE);
 }
 
-void Dragster::leftEncoder(void (*left)(), int param) {
-    attachInterrupt(2, left, param);
-}
-
-void Dragster::rightEncoder(void (*right)(), int param) {
-    attachInterrupt(3, right, param);
-}
-
 bool Dragster::readButton() {
     return digitalRead(10);
 }
