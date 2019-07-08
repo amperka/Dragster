@@ -35,8 +35,8 @@ void Dragster::begin(int direction) {
 }
 
 void Dragster::drive(int left, int right) {
-    driveOne(left, swappedLeft, 7, 6);
-    driveOne(right, swappedRight, 4, 5);
+    driveMotor(left, swappedLeft, 7, 6);
+    driveMotor(right, swappedRight, 4, 5);
 }
 
 void Dragster::driveF(float left, float right) {
@@ -64,7 +64,7 @@ void Dragster::led(int state) {
     digitalWrite(13, state);
 }
 
-void driveOne(int speed, int swapped, byte dir, byte drv) {
+void driveMotor(int speed, int swapped, byte dir, byte drv) {
     if (swapped)
         speed = -speed;
     if (speed > 0) {
