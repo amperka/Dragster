@@ -64,7 +64,7 @@ void Dragster::led(int state) {
     digitalWrite(13, state);
 }
 
-void driveMotor(int speed, int swapped, byte dir, byte drv) {
+void Dragster::driveMotor(int speed, int swapped, byte dir, byte drv) {
     if (swapped)
         speed = -speed;
     if (speed > 0) {
