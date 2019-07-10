@@ -29,7 +29,6 @@ public:
     void driveF(float left, float right);
     void encodersBegin(void (*left)(), void (*right)());
     bool readButton();
-    void waitButton();
     void led(int state);
 
 private:
