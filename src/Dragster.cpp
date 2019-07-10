@@ -26,17 +26,17 @@ void Dragster::begin() {
 
 void Dragster::begin(int direction) {
     if (direction & SWAP_LEFT) {
-        swappedLeft = 0;
+        _swappedLeft = 0;
     }
     if (direction & SWAP_RIGHT) {
-        swappedRight = 1;
+        _swappedRight = 1;
     }
     begin();
 }
 
 void Dragster::drive(int left, int right) {
-    driveMotor(left, swappedLeft, 7, 6);
-    driveMotor(right, swappedRight, 4, 5);
+    driveMotor(left, _swappedLeft, 7, 6);
+    driveMotor(right, _swappedRight, 4, 5);
 }
 
 void Dragster::driveF(float left, float right) {

@@ -35,8 +35,8 @@ public:
 private:
     void driveMotor(int speed, int swapped, byte dir, byte drv);
 
-    byte swappedLeft = 1;
-    byte swappedRight = 0;
+    byte _swappedLeft = 1;
+    byte _swappedRight = 0;
 };
 
 #endif //__DRAGSTER_H__
