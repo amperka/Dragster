@@ -29,14 +29,13 @@ public:
     void driveF(float left, float right);
     void encodersBegin(void (*left)(), void (*right)());
     bool readButton();
-    void waitButton();
     void led(int state);
 
 private:
     void driveMotor(int speed, int swapped, byte dir, byte drv);
 
-    byte swappedLeft = 1;
-    byte swappedRight = 0;
+    byte _swappedLeft = 1;
+    byte _swappedRight = 0;
 };
 
 #endif //__DRAGSTER_H__
