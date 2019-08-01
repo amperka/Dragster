@@ -40,8 +40,15 @@ void Dragster::begin(int direction) {
 }
 
 void Dragster::drive(int left, int right) {
-    driveMotor(left, _swappedLeft, 7, 6);
-    driveMotor(right, _swappedRight, 4, 5);
+    if (left == 0)
+        driveMotor(0, _swappedLeft, 7, 6);
+    else
+        driveMotor(map(left, 0, 255, LOWER_VOLTAGE_LIMIT, (long)_upperVoltageLimit), _swappedLeft, 7, 6);
+
+    if (right == 0)
+        driveMotor(0, _swappedRight, 4, 5);
+    else
+        driveMotor(map(right, 0, 255, LOWER_VOLTAGE_LIMIT, (long)_upperVoltageLimit), _swappedRight, 4, 5);
 }
 
 void Dragster::driveF(float left, float right) {
