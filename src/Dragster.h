@@ -20,6 +20,18 @@
 #define SWAP_RIGHT 0b00000001
 #define SWAP_BOTH 0b00000011
 
+// Motor type is:
+// COMMON: 1.5V (3-4 Ohm)
+// GOOD: 3V (6-8 Ohm)
+// BEST: 6V (13-16 Ohm)
+typedef enum { 
+    COMMON = 70,
+    GOOD = 140,
+    BEST = 255 } MotorType;
+
+// Motor don't rotate with voltage less then
+#define LOWER_VOLTAGE_LIMIT 13
+
 class Dragster {
 public:
     Dragster();
