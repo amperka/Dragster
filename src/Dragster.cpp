@@ -12,6 +12,11 @@
 #include "Dragster.h"
 
 Dragster::Dragster() {
+    _upperVoltageLimit = COMMON;
+}
+
+Dragster::Dragster(MotorType type) {
+    _upperVoltageLimit = type;
 }
 
 void Dragster::begin() {

@@ -35,6 +35,7 @@ typedef enum {
 class Dragster {
 public:
     Dragster();
+    Dragster(MotorType type);
     void begin();
     void begin(int direction);
     void drive(int left, int right);
@@ -48,6 +49,7 @@ private:
 
     byte _swappedLeft = 1;
     byte _swappedRight = 0;
+    MotorType _upperVoltageLimit;
 };
 
 #endif //__DRAGSTER_H__
