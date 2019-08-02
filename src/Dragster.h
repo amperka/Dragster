@@ -21,14 +21,14 @@
 #define SWAP_BOTH 0b00000011
 
 // Motor type is:
-// COMMON: 1.5V (3-4 Ohm)
-// GOOD: 3V (6-8 Ohm)
-// BEST: 6V (13-16 Ohm)
-typedef enum {
-    COMMON = 70,
-    GOOD = 140,
-    BEST = 255
-} MotorType;
+// UPPER_VOLTAGE_FOR_4_OHMS: 1.5V (3-4 Ohm)
+// UPPER_VOLTAGE_FOR_8_OHMS: 3V (6-8 Ohm)
+// UPPER_VOLTAGE_FOR_16_OHMS: 6V (13-16 Ohm)
+enum {
+    UPPER_VOLTAGE_FOR_4_OHMS = 70,
+    UPPER_VOLTAGE_FOR_8_OHMS = 140,
+    UPPER_VOLTAGE_FOR_16_OHMS = 255,
+};
 
 // Motor don't rotate with voltage less then
 #define LOWER_VOLTAGE_LIMIT 13
