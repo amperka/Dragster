@@ -13,10 +13,20 @@
 
 Dragster::Dragster() {
     _upperVoltageLimit = UPPER_VOLTAGE_FOR_4_OHMS;
+    _lowerClockwiseVoltageLimit = 15; // reduction gear resistivity is different
+    _lowerCounterClockwiseVoltageLimit = 21; // in different rotation directions
 }
 
 Dragster::Dragster(MotorType type) {
     _upperVoltageLimit = type;
+    _lowerClockwiseVoltageLimit = 15;
+    _lowerCounterClockwiseVoltageLimit = 21;
+}
+
+Dragster::Dragster(MotorType type, byte leftLowerLimit, byte rightLowerLimit) {
+    _upperVoltageLimit = type;
+    _lowerClockwiseVoltageLimit = leftLowerLimit;
+    _lowerCounterClockwiseVoltageLimit = rightLowerLimit;
 }
 
 void Dragster::begin() {
@@ -42,13 +52,17 @@ void Dragster::begin(int direction) {
 void Dragster::drive(int left, int right) {
     if (left == 0)
         driveMotor(0, _swappedLeft, 7, 6);
+    else if (left > 0)
+        driveMotor(map(left, 0, 255, _lowerClockwiseVoltageLimit, (long)_upperVoltageLimit), _swappedLeft, 7, 6);
     else
-        driveMotor(map(left, 0, 255, LOWER_VOLTAGE_LIMIT, (long)_upperVoltageLimit), _swappedLeft, 7, 6);
+        driveMotor(map(left, 0, 255, _lowerCounterClockwiseVoltageLimit, (long)_upperVoltageLimit), _swappedLeft, 7, 6);
 
     if (right == 0)
         driveMotor(0, _swappedRight, 4, 5);
+    else if (right > 0)
+        driveMotor(map(right, 0, 255, _lowerCounterClockwiseVoltageLimit, (long)_upperVoltageLimit), _swappedRight, 4, 5);
     else
-        driveMotor(map(right, 0, 255, LOWER_VOLTAGE_LIMIT, (long)_upperVoltageLimit), _swappedRight, 4, 5);
+        driveMotor(map(right, 0, 255, _lowerClockwiseVoltageLimit, (long)_upperVoltageLimit), _swappedRight, 4, 5);
 }
 
 void Dragster::driveF(float left, float right) {
