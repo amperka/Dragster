@@ -12,21 +12,21 @@
 #include "Dragster.h"
 
 Dragster::Dragster() {
-    _upperVoltageLimit = UPPER_VOLTAGE_FOR_4_OHMS;
+    _upperVoltageLimit = 32;
     _lowerClockwiseVoltageLimit = 15; // reduction gear resistivity is different
     _lowerCounterClockwiseVoltageLimit = 21; // in different rotation directions
 }
 
-Dragster::Dragster(MotorType type) {
-    _upperVoltageLimit = type;
+Dragster::Dragster(float uMax) {
+    _upperVoltageLimit = (byte)((uMax / 12) * 255);
     _lowerClockwiseVoltageLimit = 15;
     _lowerCounterClockwiseVoltageLimit = 21;
 }
 
-Dragster::Dragster(MotorType type, byte leftLowerLimit, byte rightLowerLimit) {
-    _upperVoltageLimit = type;
-    _lowerClockwiseVoltageLimit = leftLowerLimit;
-    _lowerCounterClockwiseVoltageLimit = rightLowerLimit;
+Dragster::Dragster(float uMax, float uForwardMin, float uBackwardMax) {
+    _upperVoltageLimit = (byte)((uMax / 12) * 255);
+    _lowerClockwiseVoltageLimit = (byte)((uForwardMin / 12) * 255);
+    _lowerCounterClockwiseVoltageLimit = (byte)((uBackwardMax / 12) * 255);
 }
 
 void Dragster::begin() {

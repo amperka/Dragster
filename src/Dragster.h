@@ -20,21 +20,11 @@
 #define SWAP_RIGHT 0b00000001
 #define SWAP_BOTH 0b00000011
 
-// Motor type is:
-// UPPER_VOLTAGE_FOR_4_OHMS: 1.5V (3-4 Ohm)
-// UPPER_VOLTAGE_FOR_8_OHMS: 3V (6-8 Ohm)
-// UPPER_VOLTAGE_FOR_16_OHMS: 6V (13-16 Ohm)
-typedef enum {
-    UPPER_VOLTAGE_FOR_4_OHMS = 70,
-    UPPER_VOLTAGE_FOR_8_OHMS = 140,
-    UPPER_VOLTAGE_FOR_16_OHMS = 255,
-} MotorType;
-
 class Dragster {
 public:
     Dragster();
-    Dragster(MotorType type);
-    Dragster(MotorType type, byte leftLowerLimit, byte rightLowerLimit);
+    Dragster(float uMax);
+    Dragster(float uMax, float uForwardMin, float uBackwardMax);
     void begin();
     void begin(int direction);
     void drive(int left, int right);
@@ -48,8 +38,8 @@ private:
 
     byte _swappedLeft = 1;
     byte _swappedRight = 0;
-    
-    MotorType _upperVoltageLimit;
+
+    byte _upperVoltageLimit;
 
     // Motor don't rotate with voltage less then
     byte _lowerClockwiseVoltageLimit;
