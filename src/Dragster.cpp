@@ -71,9 +71,9 @@ void Dragster::driveMotor(int speed, int swapped, byte dir, byte drv) {
         speed = -speed;
     if (speed > 0) {
         digitalWrite(dir, HIGH);
-        analogWrite(drv, speed);
+        analogWrite(drv, map(speed, 0, 255, _lowerForvardLimit, _upperLimit));
     } else {
         digitalWrite(dir, LOW);
-        analogWrite(drv, -speed);
+        analogWrite(drv, map(-speed, 0, 255, _lowerBackwardLimit, _upperLimit));
     }
 }
