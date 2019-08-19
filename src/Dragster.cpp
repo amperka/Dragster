@@ -12,6 +12,16 @@
 #include "Dragster.h"
 
 Dragster::Dragster() {
+    // default parameters for 3-4 Ohm motors
+    _upperLimit = 32;
+    _lowerForwardLimit = 15;
+    _lowerBackwardLimit = 21;
+}
+
+Dragster::Dragster(byte upperLimit, byte lowerForwardLimit, byte lowerBackwardLimit) {
+    _upperLimit = upperLimit;
+    _lowerForwardLimit = lowerForwardLimit;
+    _lowerBackwardLimit = lowerBackwardLimit;
 }
 
 void Dragster::begin() {
@@ -61,9 +71,9 @@ void Dragster::driveMotor(int speed, int swapped, byte dir, byte drv) {
         speed = -speed;
     if (speed > 0) {
         digitalWrite(dir, HIGH);
-        analogWrite(drv, speed);
+        analogWrite(drv, map(speed, 0, 255, _lowerForwardLimit, _upperLimit));
     } else {
         digitalWrite(dir, LOW);
-        analogWrite(drv, -speed);
+        analogWrite(drv, map(-speed, 0, 255, _lowerBackwardLimit, _upperLimit));
     }
 }
