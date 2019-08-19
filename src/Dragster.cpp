@@ -12,6 +12,16 @@
 #include "Dragster.h"
 
 Dragster::Dragster() {
+    // default parameters for 3-4 Ohm motors
+    _upperLimit = 32;
+    _lowerForvardLimit = 15;
+    _lowerBackwardLimit = 21;
+}
+
+Dragster::Dragster(byte upperLimit, byte lowerForwardLimit, byte lowerBackwardLimit) {
+    _upperLimit = upperLimit;
+    _lowerForvardLimit = lowerForwardLimit;
+    _lowerBackwardLimit = lowerBackwardLimit;
 }
 
 void Dragster::begin() {

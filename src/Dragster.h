@@ -23,6 +23,7 @@
 class Dragster {
 public:
     Dragster();
+    Dragster(byte upperLimit, byte lowerForwardLimit, byte lowerBackwardLimit);
     void begin();
     void begin(int direction);
     void drive(int left, int right);
