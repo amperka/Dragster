@@ -39,7 +39,7 @@ private:
     byte _swappedRight = 0;
 
     byte _upperLimit;
-    byte _lowerForvardLimit;
+    byte _lowerForwardLimit;
     byte _lowerBackwardLimit;
 };
 
