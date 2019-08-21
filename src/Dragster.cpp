@@ -13,9 +13,9 @@
 
 Dragster::Dragster() {
     // default parameters for 3-4 Ohm motors
-    _upperLimit = 32;
-    _lowerForwardLimit = 15;
-    _lowerBackwardLimit = 21;
+    _upperLimit = 80;
+    _lowerForwardLimit = 25;
+    _lowerBackwardLimit = 25;
 }
 
 Dragster::Dragster(byte upperLimit, byte lowerForwardLimit, byte lowerBackwardLimit) {
