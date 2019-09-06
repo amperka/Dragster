@@ -69,7 +69,9 @@ void Dragster::led(int state) {
 void Dragster::driveMotor(int speed, int swapped, byte dir, byte drv) {
     if (swapped)
         speed = -speed;
-    if (speed > 0) {
+    if (speed == 0) {
+        analogWrite(drv, 0);
+    } else if (speed > 0) {
         digitalWrite(dir, HIGH);
         analogWrite(drv, map(speed, 0, 255, _lowerForwardLimit, _upperLimit));
     } else {
