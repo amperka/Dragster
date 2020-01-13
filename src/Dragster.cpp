@@ -86,3 +86,31 @@ void Dragster::driveMotor(int speed, int swapped, byte dir, byte drv) {
         analogWrite(drv, map(-speed, 0, 255, _lowerBackwardLimit, _upperLimit));
     }
 }
+
+void Dragster::probeMotorType(void) {
+    // initialise counters
+    byte counter = 0;
+    void leftEncoder(void) { counter++; }
+    void rightEncoder(void) { counter++; }
+    // connect encoders
+    encodersBegin(leftEncoder, rightEncoder);
+    // set small voltage to motors
+    digitalWrite(4, _swappedRight);
+    digitalWrite(7, _swappedLeft);
+    analogWrite(5, 50);
+    analogWrite(6, 50);
+    // wait 0.3c
+    delay(300);
+    // stop motors, disconnect encoders
+    analogWrite(5, 0);
+    analogWrite(6, 0);
+    detachInterrupt(2);
+    detachInterrupt(3);
+    // motor type selection
+    if(counter > 2) {
+        defineMotorType(80, 25, 25); // 4 Ohm motors
+    } else {
+        defineMotorType(255, 25, 25); // 16+ Ohm motors
+    }
+    _motorsUnknown = false;
+}
