@@ -96,8 +96,8 @@ void Dragster::probeMotorType(void) {
     // connect encoders
     encodersBegin(leftEncoder, rightEncoder);
     // set small voltage to motors
-    digitalWrite(4, _swappedRight);
-    digitalWrite(7, _swappedLeft);
+    digitalWrite(4, !_swappedRight);
+    digitalWrite(7, !_swappedLeft);
     analogWrite(5, 50);
     analogWrite(6, 50);
     // wait 0.3c
