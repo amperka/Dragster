@@ -19,9 +19,14 @@ Dragster::Dragster() {
 }
 
 Dragster::Dragster(byte upperLimit, byte lowerForwardLimit, byte lowerBackwardLimit) {
+    defineMotorType(upperLimit, lowerForwardLimit, lowerBackwardLimit);
+}
+
+void Dragster::defineMotorType(byte upperLimit, byte lowerForwardLimit, byte lowerBackwardLimit) {
     _upperLimit = upperLimit;
     _lowerForwardLimit = lowerForwardLimit;
     _lowerBackwardLimit = lowerBackwardLimit;
+    _motorsUnknown = false;
 }
 
 void Dragster::begin() {
