@@ -50,6 +50,8 @@ void Dragster::begin(int direction) {
 }
 
 void Dragster::drive(int left, int right) {
+    if (_motorsUnknown && (left != 0 || right != 0))
+        probeMotorType();
     driveMotor(left, _swappedLeft, 7, 6);
     driveMotor(right, _swappedRight, 4, 5);
 }
