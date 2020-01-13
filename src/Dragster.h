@@ -26,6 +26,7 @@ public:
     Dragster(byte upperLimit, byte lowerForwardLimit, byte lowerBackwardLimit);
     void begin();
     void begin(int direction);
+    void defineMotorType(byte upperLimit, byte lowerForwardLimit, byte lowerBackwardLimit);
     void drive(int left, int right);
     void driveF(float left, float right);
     void encodersBegin(void (*left)(), void (*right)());
@@ -34,6 +35,7 @@ public:
 
 private:
     void driveMotor(int speed, int swapped, byte dir, byte drv);
+    void probeMotorType(void);
 
     byte _swappedLeft = 1;
     byte _swappedRight = 0;
@@ -41,6 +43,8 @@ private:
     byte _upperLimit;
     byte _lowerForwardLimit;
     byte _lowerBackwardLimit;
+
+    bool _motorsUnknown = true;
 };
 
 #endif //__DRAGSTER_H__
