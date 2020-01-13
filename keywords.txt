@@ -21,6 +21,8 @@ rightEncoder 		KEYWORD2
 readButton 		KEYWORD2
 waitButton 		KEYWORD2
 led 			KEYWORD2
+defineMotorType KEYWORD2
+probeMotorType  KEYWORD2
 
 #######################################
 # Constants (LITERAL1)
