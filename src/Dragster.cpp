@@ -87,11 +87,12 @@ void Dragster::driveMotor(int speed, int swapped, byte dir, byte drv) {
     }
 }
 
+// initialise counters
+static byte counter = 0;
+void leftEncoder(void) { counter++; }
+void rightEncoder(void) { counter++; }
+
 void Dragster::probeMotorType(void) {
-    // initialise counters
-    byte counter = 0;
-    void leftEncoder(void) { counter++; }
-    void rightEncoder(void) { counter++; }
     // connect encoders
     encodersBegin(leftEncoder, rightEncoder);
     // set small voltage to motors
