@@ -108,7 +108,7 @@ void Dragster::probeMotorType(void) {
     detachInterrupt(2);
     detachInterrupt(3);
     // motor type selection
-    if(counter > 2) {
+    if (counter > 2) {
         defineMotorType(80, 25, 25); // 4 Ohm motors
     } else {
         defineMotorType(255, 25, 25); // 16+ Ohm motors
