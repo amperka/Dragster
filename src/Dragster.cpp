@@ -12,10 +12,12 @@
 #include "Dragster.h"
 
 Dragster::Dragster() {
-    // default parameters for 3-4 Ohm motors
-    _upperLimit = 80;
-    _lowerForwardLimit = 25;
-    _lowerBackwardLimit = 25;
+    // 80 is default parameters for 3-4 Ohm motors
+    defineMotorType( 80, PWM_OF_START_MOVING, PWM_OF_START_MOVING);
+}
+
+Dragster::Dragster(byte upperLimit) {
+    defineMotorType(upperLimit, PWM_OF_START_MOVING, PWM_OF_START_MOVING);
 }
 
 Dragster::Dragster(byte upperLimit, byte lowerForwardLimit, byte lowerBackwardLimit) {
@@ -109,9 +111,9 @@ void Dragster::probeMotorType(void) {
     detachInterrupt(3);
     // motor type selection
     if (counter > 2) {
-        defineMotorType(80, 25, 25); // 4 Ohm motors
+        defineMotorType(80, PWM_OF_START_MOVING, PWM_OF_START_MOVING); // 4 Ohm motors
     } else {
-        defineMotorType(255, 25, 25); // 16+ Ohm motors
+        defineMotorType(255, PWM_OF_START_MOVING, PWM_OF_START_MOVING); // 16+ Ohm motors
     }
     _motorsUnknown = false;
 }

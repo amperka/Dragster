@@ -20,9 +20,17 @@
 #define SWAP_RIGHT 0b00000001
 #define SWAP_BOTH 0b00000011
 
+// Motor start rotation then PWM value more then PWM_OF_START_MOVING
+#define PWM_OF_START_MOVING 25
+
+// Motor type constants for different sets, use: `Dragster dragster(DRAGSTER_1);`
+#define DRAGSTER_1 80
+#define DRAGSTER_2 255
+
 class Dragster {
 public:
     Dragster();
+    Dragster(byte upperLimit);
     Dragster(byte upperLimit, byte lowerForwardLimit, byte lowerBackwardLimit);
     void begin();
     void begin(int direction);
