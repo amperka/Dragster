@@ -14,6 +14,7 @@
 Dragster::Dragster() {
     // 80 is default parameters for 3-4 Ohm motors
     defineMotorType( 80, PWM_OF_START_MOVING, PWM_OF_START_MOVING);
+    _motorsUnknown = true;
 }
 
 Dragster::Dragster(byte upperLimit) {
