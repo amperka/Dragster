@@ -43,6 +43,8 @@ public:
 
 private:
     void driveMotor(int speed, int swapped, byte dir, byte drv);
+    
+    // for future use
     void probeMotorType(void);
 
     byte _swappedLeft = 1;

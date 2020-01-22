@@ -53,8 +53,8 @@ void Dragster::begin(int direction) {
 }
 
 void Dragster::drive(int left, int right) {
-    if (_motorsUnknown && (left != 0 || right != 0))
-        probeMotorType();
+    if (_motorsUnknown)
+        defineMotorType( 80, PWM_OF_START_MOVING, PWM_OF_START_MOVING);
     driveMotor(left, _swappedLeft, 7, 6);
     driveMotor(right, _swappedRight, 4, 5);
 }
@@ -95,6 +95,7 @@ static byte counter = 0;
 void leftEncoder(void) { counter++; }
 void rightEncoder(void) { counter++; }
 
+// for future use
 void Dragster::probeMotorType(void) {
     // connect encoders
     encodersBegin(leftEncoder, rightEncoder);
