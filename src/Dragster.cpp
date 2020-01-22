@@ -12,16 +12,24 @@
 #include "Dragster.h"
 
 Dragster::Dragster() {
-    // default parameters for 3-4 Ohm motors
-    _upperLimit = 80;
-    _lowerForwardLimit = 25;
-    _lowerBackwardLimit = 25;
+    // 80 is default parameters for 3-4 Ohm motors
+    defineMotorType( 80, PWM_OF_START_MOVING, PWM_OF_START_MOVING);
+    _motorsUnknown = true;
+}
+
+Dragster::Dragster(byte upperLimit) {
+    defineMotorType(upperLimit, PWM_OF_START_MOVING, PWM_OF_START_MOVING);
 }
 
 Dragster::Dragster(byte upperLimit, byte lowerForwardLimit, byte lowerBackwardLimit) {
+    defineMotorType(upperLimit, lowerForwardLimit, lowerBackwardLimit);
+}
+
+void Dragster::defineMotorType(byte upperLimit, byte lowerForwardLimit, byte lowerBackwardLimit) {
     _upperLimit = upperLimit;
     _lowerForwardLimit = lowerForwardLimit;
     _lowerBackwardLimit = lowerBackwardLimit;
+    _motorsUnknown = false;
 }
 
 void Dragster::begin() {
@@ -45,6 +53,8 @@ void Dragster::begin(int direction) {
 }
 
 void Dragster::drive(int left, int right) {
+    if (_motorsUnknown)
+        defineMotorType( 80, PWM_OF_START_MOVING, PWM_OF_START_MOVING);
     driveMotor(left, _swappedLeft, 7, 6);
     driveMotor(right, _swappedRight, 4, 5);
 }
@@ -78,4 +88,34 @@ void Dragster::driveMotor(int speed, int swapped, byte dir, byte drv) {
         digitalWrite(dir, LOW);
         analogWrite(drv, map(-speed, 0, 255, _lowerBackwardLimit, _upperLimit));
     }
+}
+
+// initialise counters
+static byte counter = 0;
+void leftEncoder(void) { counter++; }
+void rightEncoder(void) { counter++; }
+
+// for future use
+void Dragster::probeMotorType(void) {
+    // connect encoders
+    encodersBegin(leftEncoder, rightEncoder);
+    // set small voltage to motors
+    digitalWrite(4, !_swappedRight);
+    digitalWrite(7, !_swappedLeft);
+    analogWrite(5, 50);
+    analogWrite(6, 50);
+    // wait 0.3c
+    delay(300);
+    // stop motors, disconnect encoders
+    analogWrite(5, 0);
+    analogWrite(6, 0);
+    detachInterrupt(2);
+    detachInterrupt(3);
+    // motor type selection
+    if (counter > 2) {
+        defineMotorType(80, PWM_OF_START_MOVING, PWM_OF_START_MOVING); // 4 Ohm motors
+    } else {
+        defineMotorType(255, PWM_OF_START_MOVING, PWM_OF_START_MOVING); // 16+ Ohm motors
+    }
+    _motorsUnknown = false;
 }
