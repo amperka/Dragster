@@ -13,15 +13,21 @@
 
 Dragster::Dragster() {
     // default parameters for 3-4 Ohm motors
-    _upperLimit = 80;
-    _lowerForwardLimit = 25;
-    _lowerBackwardLimit = 25;
+    setMotorLimits(MMAX_3_OHM, MMIN_DEFAULT, MMIN_DEFAULT);
 }
 
-Dragster::Dragster(byte upperLimit, byte lowerForwardLimit, byte lowerBackwardLimit) {
-    _upperLimit = upperLimit;
-    _lowerForwardLimit = lowerForwardLimit;
-    _lowerBackwardLimit = lowerBackwardLimit;
+Dragster::Dragster(byte motorMax) {
+    setMotorLimits(motorMax, MMIN_DEFAULT, MMIN_DEFAULT);
+}
+
+Dragster::Dragster(byte motorMax, byte motorMinForward, byte motorMinBackward) {
+    setMotorLimits(motorMax, motorMinForward, motorMinBackward);
+}
+
+void Dragster::setMotorLimits(byte motorMax, byte motorMinForward, byte motorMinBackward) {
+    _motorMax = motorMax;
+    _motorMinForward = motorMinForward;
+    _motorMinBackward = motorMinBackward;
 }
 
 void Dragster::begin() {
@@ -73,9 +79,9 @@ void Dragster::driveMotor(int speed, int swapped, byte dir, byte drv) {
         analogWrite(drv, 0);
     } else if (speed > 0) {
         digitalWrite(dir, HIGH);
-        analogWrite(drv, map(speed, 0, 255, _lowerForwardLimit, _upperLimit));
+        analogWrite(drv, map(speed, 0, 255, _motorMinForward, _motorMax));
     } else {
         digitalWrite(dir, LOW);
-        analogWrite(drv, map(-speed, 0, 255, _lowerBackwardLimit, _upperLimit));
+        analogWrite(drv, map(-speed, 0, 255, _motorMinBackward, _motorMax));
     }
 }
