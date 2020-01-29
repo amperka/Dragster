@@ -25,9 +25,9 @@ Dragster::Dragster(byte motorMax, byte motorMinForward, byte motorMinBackward) {
 }
 
 void Dragster::setMotorLimits(byte motorMax, byte motorMinForward, byte motorMinBackward) {
-    _upperLimit = motorMax;
-    _lowerForwardLimit = motorMinForward;
-    _lowerBackwardLimit = motorMinBackward;
+    _motorMax = motorMax;
+    _motorMinForward = motorMinForward;
+    _motorMinBackward = motorMinBackward;
 }
 
 void Dragster::begin() {
@@ -79,9 +79,9 @@ void Dragster::driveMotor(int speed, int swapped, byte dir, byte drv) {
         analogWrite(drv, 0);
     } else if (speed > 0) {
         digitalWrite(dir, HIGH);
-        analogWrite(drv, map(speed, 0, 255, _lowerForwardLimit, _upperLimit));
+        analogWrite(drv, map(speed, 0, 255, _motorMinForward, _motorMax));
     } else {
         digitalWrite(dir, LOW);
-        analogWrite(drv, map(-speed, 0, 255, _lowerBackwardLimit, _upperLimit));
+        analogWrite(drv, map(-speed, 0, 255, _motorMinBackward, _motorMax));
     }
 }

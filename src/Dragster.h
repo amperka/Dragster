@@ -48,9 +48,9 @@ private:
     byte _swappedLeft = 1;
     byte _swappedRight = 0;
 
-    byte _upperLimit;
-    byte _lowerForwardLimit;
-    byte _lowerBackwardLimit;
+    byte _motorMax;
+    byte _motorMinForward;
+    byte _motorMinBackward;
 };
 
 #endif //__DRAGSTER_H__
