@@ -13,22 +13,21 @@
 
 Dragster::Dragster() {
     // default parameters for 3-4 Ohm motors
-    setMotorLimits(MMAX_3_OHM, PWM_OF_START_MOVING, PWM_OF_START_MOVING);
+    setMotorLimits(MMAX_3_OHM, MMIN_DEFAULT, MMIN_DEFAULT);
 }
 
-Dragster::Dragster(byte motorUpperLimit) {
-    setMotorLimits(motorUpperLimit, PWM_OF_START_MOVING, PWM_OF_START_MOVING);
+Dragster::Dragster(byte motorMax) {
+    setMotorLimits(motorMax, MMIN_DEFAULT, MMIN_DEFAULT);
 }
 
-Dragster::Dragster(byte motorUpperLimit, byte motorLowerForwardLimit, byte motorLowerBackwardLimit) {
-    setMotorLimits(motorUpperLimit, motorLowerForwardLimit, motorLowerBackwardLimit);
+Dragster::Dragster(byte motorMax, byte motorMinForward, byte motorMinBackward) {
+    setMotorLimits(motorMax, motorMinForward, motorMinBackward);
 }
 
-void Dragster::setMotorLimits(byte motorUpperLimit, 
-    byte motorLowerForwardLimit, byte motorLowerBackwardLimit) {
-    _upperLimit = motorUpperLimit;
-    _lowerForwardLimit = motorLowerForwardLimit;
-    _lowerBackwardLimit = motorLowerBackwardLimit;
+void Dragster::setMotorLimits(byte motorMax, byte motorMinForward, byte motorMinBackward) {
+    _upperLimit = motorMax;
+    _lowerForwardLimit = motorMinForward;
+    _lowerBackwardLimit = motorMinBackward;
 }
 
 void Dragster::begin() {
