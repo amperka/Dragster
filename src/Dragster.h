@@ -20,10 +20,20 @@
 #define SWAP_RIGHT 0b00000001
 #define SWAP_BOTH 0b00000011
 
+// Motor start rotation then PWM value more then PWM_OF_START_MOVING
+constexpr byte PWM_OF_START_MOVING = 25;
+
+// Constants for different motors types: 
+// maximal voltage (0...255) in case of motor active resistance
+constexpr byte MMAX_3_OHM = 80;
+constexpr byte MMAX_16_OHM = 255;
+
 class Dragster {
 public:
     Dragster();
-    Dragster(byte upperLimit, byte lowerForwardLimit, byte lowerBackwardLimit);
+    Dragster(byte motorUpperLimit);
+    Dragster(byte motorUpperLimit, byte motorLowerForwardLimit,
+        byte motorLowerBackwardLimit);
     void begin();
     void begin(int direction);
     void drive(int left, int right);
@@ -34,6 +44,8 @@ public:
 
 private:
     void driveMotor(int speed, int swapped, byte dir, byte drv);
+    void setMotorLimits(byte motorUpperLimit, byte motorLowerForwardLimit,
+        byte motorLowerBackwardLimit);
 
     byte _swappedLeft = 1;
     byte _swappedRight = 0;
